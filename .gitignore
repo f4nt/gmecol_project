@@ -1,0 +1,4 @@
+collector/collector/db.collector
+collector/collector/local_settings.py
+collector/collector/static
+*.pyc

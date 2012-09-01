@@ -66,6 +66,9 @@
               <li class="nav-header">Navigation</li>
               <li><a href="{% url index %}">Home</a></li>
               <li><a href="{% url search %}">Search</a></li>
+              {% if request.user.is_authenticated %}
+                  <li><a href="{% url view-collection %}">Your Collection</a></li>
+              {% endif %}
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

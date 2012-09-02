@@ -23,7 +23,7 @@ def restart_memcached():
 def create_build():
     with cd(os.path.join(PROJECT_ROOT, 'builds')):
         run('mv gmecol_project gmecol_project_%s' % datetime.now().strftime(
-            '%Y-%m-%d-%H_%M:%S'
+            '%Y-%m-%d-%H_%M_%S'
             ))
         run('git clone git://github.com/f4nt/gmecol_project.git gmecol_project')
 

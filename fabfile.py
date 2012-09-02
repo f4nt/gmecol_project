@@ -1,0 +1,49 @@
+# Deploy script, to deploy to webfaction currently
+import os
+from datetime import datetime
+
+from fabric.api import *
+
+env.user = 'f4nt'
+env.hosts = ['gmecol.f4ntasmic.com']
+
+PROJECT_ROOT = '/home/f4nt/webapps/gmecol_django'
+
+
+def restart_apache():
+    run(os.path.join(PROJECT_ROOT, 'apache2/bin/restart'))
+
+
+def restart_memcached():
+    run('kill `cat /home/f4nt/memcached.pid`')
+    run('memcached -d -m 64 -s /home/f4nt/memcached.sock -P '
+        '/home/f4nt/memcached.pid')
+
+
+def create_build():
+    with cd(os.path.join(PROJECT_ROOT, 'builds')):
+        run('mv gmecol_project gmecol_project_%s' % datetime.now().strftime(
+            '%Y-%m-%d-%H_%M:%S'
+            ))
+        run('git clone git://github.com/f4nt/gmecol_project.git gmecol_project')
+
+
+def deploy_build():
+    with prefix(('export PYTHONPATH=/home/f4nt/webapps/gmecol_django:'
+            '/home/f4nt/webapps/gmecol_django/gmecol_project/'
+            'collector:/home/f4nt/webapps/gmecol_django/lib/python2.7')):
+        with cd(PROJECT_ROOT):
+            run('find . -type f -name \*.pyc -delete')
+            run('pip install -r gmecol_project/requirements.txt')
+        with cd(os.path.join(PROJECT_ROOT, 'gmecol_project/collector')):
+            run('python manage.py syncdb')
+            run('python manage.py migrate')
+            run('python manage.py collectstatic --no-input')
+        run('pip install -r gmecol_project/collector/requirements.txt')
+
+
+def deploy():
+    create_build()
+    deploy_build()
+    restart_memcached()
+    restart_apache()

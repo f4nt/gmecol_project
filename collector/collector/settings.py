@@ -182,3 +182,8 @@ try:
     from local_settings import *
 except ImportError:
     print "No local settings"
+
+try:
+    from prod_settings import *
+except ImportError:
+    print "No prod settings"

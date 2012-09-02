@@ -1,0 +1,7 @@
+South==0.7.6
+Django==1.4.1
+-e git+git://github.com/f4nt/gmecol.git#egg=gmecol
+psycopg2==2.4.5
+-e git+git://github.com/f4nt/GiantBomb.git#egg=Giantbomb
+python-memcached==1.48
+django-registration==0.8

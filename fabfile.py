@@ -31,15 +31,14 @@ def create_build():
 def deploy_build():
     with prefix(('export PYTHONPATH=/home/f4nt/webapps/gmecol_django:'
             '/home/f4nt/webapps/gmecol_django/gmecol_project/'
-            'collector:/home/f4nt/webapps/gmecol_django/lib/python2.7')):
+            'collector:/home/f4nt/webapps/gmecol_django/lib/python2.7'
+            ' DJANGO_SETTINGS_MODULE=collector.settings')):
         with cd(PROJECT_ROOT):
             run('find . -type f -name \*.pyc -delete')
             run('pip install -r gmecol_project/requirements.txt')
-        with cd(os.path.join(PROJECT_ROOT, 'gmecol_project/collector')):
-            run('python manage.py syncdb')
-            run('python manage.py migrate')
-            run('python manage.py collectstatic --no-input')
-        run('pip install -r gmecol_project/collector/requirements.txt')
+            run('ln -s ~/prod_settings.py gmecol_project/collector/collector/')
+            run('./bin/django-admin.py syncdb --migrate')
+            run('./bin/django-admin.py collectstatic --noinput')
 
 
 def deploy():

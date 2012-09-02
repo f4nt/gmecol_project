@@ -35,6 +35,7 @@ def deploy_build():
             ' DJANGO_SETTINGS_MODULE=collector.settings')):
         with cd(PROJECT_ROOT):
             run('find . -type f -name \*.pyc -delete')
+            run('rm -rf src/gmecol')
             run('pip install -r gmecol_project/requirements.txt')
             run('ln -s ~/prod_settings.py gmecol_project/collector/collector/')
             run('./bin/django-admin.py syncdb --migrate')

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block stage_header %}gmeCol: {{ request.user.username }}{% endblock %}
+{% block stage_header %}gmeCol: {{ user.username }}{% endblock %}
 {% block stage_intro %}
     <p>
         {% if request.user != user and user not in request.user.friendship.friends.all %}

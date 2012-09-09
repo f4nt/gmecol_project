@@ -6,3 +6,4 @@ psycopg2==2.4.5
 python-memcached==1.48
 django-registration==0.8
 django-simple-friends==0.4
+Markdown==2.2.0

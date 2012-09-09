@@ -10,12 +10,19 @@ env.hosts = ['gmecol.f4ntasmic.com']
 PROJECT_ROOT = '/home/f4nt/webapps/gmecol_django'
 
 
+def run_tests():
+    with lcd('collector'):
+        local('python manage.py test gmecol')
+
+
 def restart_apache():
     run(os.path.join(PROJECT_ROOT, 'apache2/bin/restart'))
 
 
 def restart_memcached():
-    run('kill `cat /home/f4nt/memcached.pid`')
+    with settings(warn_only=True):
+        # If it fails, then this instance must have died
+        run('kill `cat /home/f4nt/memcached.pid`')
     run('memcached -d -m 64 -s /home/f4nt/memcached.sock -P '
         '/home/f4nt/memcached.pid')
 

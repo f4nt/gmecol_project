@@ -1,0 +1,6 @@
+Welcome to gmeCol,
+
+Thanks for registering! To complete creating your account please head to {{ site }}{% url registration_activate activation_key %}. You have {{ expiration_days }} to activate your account.
+
+Thanks,
+gmeCol

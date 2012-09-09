@@ -1,0 +1,12 @@
+
+  <div class="well sidebar-nav">
+    <ul class="nav nav-list">
+      <li class="nav-header">Navigation</li>
+      <li><a href="{% url index %}">Home</a></li>
+      <li><a href="{% url search %}">Search</a></li>
+      {% if request.user.is_authenticated %}
+          <li><a href="{% url view-collection %}">Your Collection</a></li>
+          <li><a href="{% url message-list %}">Messages</a></li>
+      {% endif %}
+    </ul>
+  </div><!--/.well -->

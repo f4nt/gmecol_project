@@ -1,27 +1,35 @@
-{% include 'includes/head.html' %}
-  <body>
-    {% include 'includes/navbar.html' %}
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-            {% include 'includes/sidebar.html' %}
-        </div><!--/span-->
-        <div class="span9">
-          <div class="row-fluid">
-            {% block content %}{% endblock %}
-          </div><!--/row-->
-        </div><!--/span-->
-      </div><!--/row-->
-
-      <hr>
-
-      {% include 'includes/footer.html' %}
-
-    </div><!--/.fluid-container-->
-    {% include 'includes/script.html' %}
-    {% block extra_js %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include 'includes/head.html' %}
+    <title>gmecol{% block title %}{% endblock %}</title>
+    {% block head %}
     {% endblock %}
+  </head>
+    {% include 'includes/head.html' %}
+      <body>
+        {% include 'includes/navbar.html' %}
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span3">
+                {% include 'includes/sidebar.html' %}
+            </div><!--/span-->
+            <div class="span9">
+              <div class="row-fluid">
+                {% block content %}{% endblock %}
+              </div><!--/row-->
+            </div><!--/span-->
+          </div><!--/row-->
 
-  </body>
-</html>
+          <hr>
+
+          {% include 'includes/footer.html' %}
+
+        </div><!--/.fluid-container-->
+        {% include 'includes/script.html' %}
+        {% block extra_js %}
+        {% endblock %}
+
+      </body>
+    </html>
 

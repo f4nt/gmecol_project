@@ -1,4 +1,11 @@
-{% include 'includes/head.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include 'includes/head.html' %}
+    <title>gmecol{% block title %}{% endblock %}</title>
+    {% block head %}
+    {% endblock %}
+  </head>
   <body>
 
     {% include 'includes/navbar.html' %}

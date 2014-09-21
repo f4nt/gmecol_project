@@ -10,13 +10,13 @@
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               {% if request.user.is_authenticated %}
-              Logged in as <a href="{% url profile request.user.pk %}" class="navbar-link">{{ request.user.username }}</a> : <a href="{% url auth_logout %}">Logout</a>
+              Logged in as <a href="{% url "profile" request.user.pk %}" class="navbar-link">{{ request.user.username }}</a> : <a href="{% url "auth_logout" %}">Logout</a>
               {% else %}
-                  <a href="{% url auth_login %}">Login</a> | <a href="{% url registration_register %}">Register</a>
+                  <a href="{% url "auth_login" %}">Login</a> | <a href="{% url "registration_register" %}">Register</a>
               {% endif %}
             </p>
             <ul class="nav">
-              <li class="active"><a href="{% url index %}">Home</a></li>
+              <li class="active"><a href="{% url "index" %}">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>

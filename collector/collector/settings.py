@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'markup_deprecated',
+    'django_nose',
     'registration',
     'friends',
     'gmecol',
@@ -143,6 +144,7 @@ AUTH_PROFILE_MODULE = 'gmecol.UserProfile'
 
 
 GIANT_BOMB_API_KEY = ''
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 try:
     from local_settings import *

@@ -1,26 +1,36 @@
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">gmeCol</a>
-          <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right">
-              {% if request.user.is_authenticated %}
-              Logged in as <a href="{% url "profile" request.user.pk %}" class="navbar-link">{{ request.user.username }}</a> : <a href="{% url "auth_logout" %}">Logout</a>
-              {% else %}
-                  <a href="{% url "auth_login" %}">Login</a> | <a href="{% url "registration_register" %}">Register</a>
-              {% endif %}
-            </p>
-            <ul class="nav">
-              <li class="active"><a href="{% url "index" %}">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">gmeCol</a>
     </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+          <li class="active"><a href="{% url "index" %}">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="{% url "search" %}">Search Games</a></li>
+        {% if request.user.is_authenticated %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your gmeCol<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="{% url "profile" request.user.pk %}">{{ request.user }} Profile</a></li>
+                  <li><a href="{% url "view-collection" %}">Your Collection</a></li>
+                  <li><a href="{% url "wishlist" %}">Your Wishlist</a></li>
+                  <li><a href="{% url "message-list" %}">Messages</a></li>
+                  <li><a href="{% url "list-friends" %}">Friends</a></li>
+                  <li><a href="{% url "auth_logout" %}">Logout</a></li>
+              </ul>
+            </li>
+        {% else %}
+            <li><a href="{% url "auth_login" %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>

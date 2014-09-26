@@ -45,8 +45,8 @@ def deploy_build():
             run('rm -rf src/gmecol')
             run('pip install -r gmecol_project/requirements.txt')
             run('ln -s ~/prod_settings.py gmecol_project/collector/collector/')
-            run('./bin/django-admin.py syncdb --migrate')
-            run('./bin/django-admin.py collectstatic --noinput')
+            run('~/bin/django-admin.py migrate')
+            run('~/bin/django-admin.py collectstatic --noinput')
 
 
 def deploy():
